@@ -1,0 +1,28 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using StarshipTraveler.UI.Server.Data;
+using StarshipTraveler.Model;
+using System.Linq;
+
+namespace StarshipTraveler.UI.Server.Controllers
+{
+    [Route("api/[controller]")]
+    public class BasesController : Controller
+    {
+        [HttpGet]
+        public IEnumerable<Base> Bases() => SampleData.Bases;
+
+        [HttpGet]
+        [Route("{name}")]
+        public IActionResult Base([FromRoute] string name)
+        {
+            var baseObj = SampleData.Bases.FirstOrDefault(b => b.Name == name);
+            if (baseObj == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(baseObj);
+        }
+    }
+}
