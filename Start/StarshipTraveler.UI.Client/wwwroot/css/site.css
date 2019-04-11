@@ -6,6 +6,10 @@ body {
     background-image: url(../images/space-background.jpg)
 }
 
+ul {
+    color: whitesmoke;
+}
+
 h1 {
     color: whitesmoke;
     margin-left: 20px;
