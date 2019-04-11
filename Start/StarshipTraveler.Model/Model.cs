@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace StarshipTraveler.Model
 {
@@ -7,6 +8,19 @@ namespace StarshipTraveler.Model
     {
         public string Name { get; set; }
         public string Image { get; set; }
+    }
+
+    public class GraphBase : Base
+    {
+        public static GraphBase[] BasesToGraphBases(Base[] bases) =>
+            Enumerable.Range(0, bases.Length).Select(i => new GraphBase
+            {
+                GraphID = (uint)i,
+                Name = bases[i].Name,
+                Image = bases[i].Image
+            }).ToArray();
+
+        public uint GraphID { get; set; }
     }
 
     public class Ticket
@@ -37,11 +51,14 @@ namespace StarshipTraveler.Model
         Upcoming
     }
 
-    public class Connection
+    public class Connection : IEquatable<Connection>
     {
         public string From { get; set; }
         public string To { get; set; }
         public int Distance { get; set; }
         public decimal Price { get; set; }
+        
+        public bool Equals(Connection other) =>
+            From == other.From && To == other.To && Distance == other.Distance && Price == other.Price;
     }
 }
