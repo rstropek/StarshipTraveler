@@ -63,7 +63,7 @@
     private async Task HandleValidSubmit()
     {
         // To demo reuse of validation logic uncomment the following line:
-        Ticket.Passenger = string.Empty;
+        // Ticket.Passenger = string.Empty;
 
         await Http.PostJsonAsync("/api/tickets", Ticket);
     }
