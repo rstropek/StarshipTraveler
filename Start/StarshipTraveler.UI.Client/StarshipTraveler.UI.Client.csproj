@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.9.0-preview3-19154-02" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StarshipTraveler.Components\StarshipTraveler.Components.csproj" />
+    <ProjectReference Include="..\StarshipTraveler.Model\StarshipTraveler.Model.csproj" />
+  </ItemGroup>
+
 </Project>
