@@ -4,6 +4,15 @@
 
 I created this demo app for the [DevOne 2019 conference](https://devone.at). I showcases the capabilities of the ASP.NET Core Blazor framework.
 
+## Run the Full Demo
+
+* [Install *Blazor*](https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/blazor/get-started) and its requirements.
+
+* Clone the repository.
+
+* Open the solution [StarshipTraveler.sln](StarshipTraveler.sln) and run it.
+
+
 ## Replay Demo?
 
 Do you want to try the demo yourself? Here is what you do:
