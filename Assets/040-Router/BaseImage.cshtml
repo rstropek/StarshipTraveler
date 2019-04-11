@@ -1,0 +1,11 @@
+﻿@using StarshipTraveler.Model
+
+<div class="base">
+    <img src="@Base.Image" />
+    <h2>@Base.Name</h2>
+</div>
+
+@functions {
+    [Parameter]
+    private Base Base { get; set; }
+}

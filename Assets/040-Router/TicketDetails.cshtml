@@ -1,0 +1,48 @@
+﻿@page "/tickets/{TicketId}"
+@inject HttpClient Http
+
+<div class="ticket-details">
+    <h1>Your Ticket @TicketId</h1>
+
+    @if (FromBase != null && ToBase != null)
+    {
+        <div class="route">
+            <BaseImage Base="@FromBase" />
+
+            <svg width="24" height="24" viewBox="0 0 24 24" class="arrow">
+                <path d="M8.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" />
+            </svg>
+
+            <BaseImage Base="@ToBase" />
+        </div>
+    }
+
+    @if (Ticket != null)
+    {
+        <div class="details">
+            <h2>Passenger: @Ticket.Passenger</h2>
+            <h3>Date: @Ticket.Date.ToString("D")</h3>
+            <h3>Price: @Ticket.Price.ToString("#,##0.00")</h3>
+        </div>
+    }
+</div>
+
+@functions {
+    [Parameter]
+    private string TicketId { get; set; }
+
+    private Ticket Ticket { get; set; }
+    private Base FromBase { get; set; }
+    private Base ToBase { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+        Ticket = await Http.GetJsonAsync<Ticket>($"/api/tickets/{TicketId}");
+        var fromBaseTask = Http.GetJsonAsync<Base>($"/api/bases/{Ticket.From}");
+        var toBaseTask = Http.GetJsonAsync<Base>($"/api/bases/{Ticket.To}");
+        await Task.WhenAll(fromBaseTask, toBaseTask);
+
+        FromBase = fromBaseTask.Result;
+        ToBase = toBaseTask.Result;
+    }
+}

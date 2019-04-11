@@ -1,0 +1,9 @@
+POST http://localhost:63658/api/tickets
+Content-Type: application/json
+
+{
+    "date":"2019-04-11T00:00:00Z",
+    "from":"Cybertron",
+    "to":"Cybertron",
+    "passenger":""
+}
