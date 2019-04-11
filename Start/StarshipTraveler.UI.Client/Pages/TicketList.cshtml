@@ -1,7 +1,49 @@
 ﻿@page "/"
 @page "/tickets"
+@inject HttpClient Http
 
-<h1>Hello World!</h1>
+<h1>Your Tickets</h1>
+
+<div id="ticket-list">
+    @if (Tickets == null)
+    {
+        <h2>Loading your tickets...</h2>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var ticket in Tickets)
+            {
+                <TicketCard Ticket="@ticket" />
+            }
+        </div>
+    }
+</div>
 
 @functions {
+    private TimeRelation time = TimeRelation.Past;
+    private TimeRelation Time
+    {
+        get => time;
+        set => time = value;
+    }
+
+    private IEnumerable<Ticket> AllTickets { get; set; }
+    private IEnumerable<Ticket> Tickets { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("/api/tickets");
+        RefreshTickets();
+    }
+
+    private void RefreshTickets()
+    {
+        if (AllTickets != null)
+        {
+            Tickets = AllTickets.Where(t =>
+                (Time == TimeRelation.Past && t.Date < DateTime.Today)
+                || (Time != TimeRelation.Past && t.Date >= DateTime.Today));
+        }
+    }
 }

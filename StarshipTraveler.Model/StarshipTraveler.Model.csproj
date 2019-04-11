@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dijkstra.NET" Version="1.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.ComponentModel.Annotations">
       <HintPath>..\..\..\..\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\3.0.0-preview3-27503-5\data\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>

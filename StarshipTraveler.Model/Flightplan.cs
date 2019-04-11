@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dijkstra.NET.Graph;
+using Dijkstra.NET.ShortestPath;
+using System;
 using System.Linq;
 
 namespace StarshipTraveler.Model
@@ -33,29 +35,30 @@ namespace StarshipTraveler.Model
 
     public interface IFlightplan
     {
-        (BasePoint[] bases, ConnectionWithBases[] connections) PrepareFlightplan(Connection[] connectionTask, Base[] baseTask, (double X, double Y) center);
+        (BasePoint[] bases, ConnectionWithBases[] connections) PrepareFlightplan(Connection[] connections, Base[] bases, (double X, double Y) center);
+        Base[] CalculateShortestPath(Connection[] connections, Base[] bases, string from, string to);
     }
 
     public class Flightplan : IFlightplan
     {
-        public (BasePoint[] bases, ConnectionWithBases[] connections) PrepareFlightplan(Connection[] connectionTask, Base[] baseTask, (double X, double Y) center)
+        public (BasePoint[] bases, ConnectionWithBases[] connections) PrepareFlightplan(Connection[] connections, Base[] bases, (double X, double Y) center)
         {
-            var angleStep = Math.PI * 2 / baseTask.Length;
-            var points = Enumerable.Range(0, baseTask.Length)
+            var angleStep = Math.PI * 2 / bases.Length;
+            var points = Enumerable.Range(0, bases.Length)
                 .Select(i => new BasePoint
                 {
-                    Base = baseTask[i],
+                    Base = bases[i],
                     X = 250 + Math.Sin(angleStep * i) * 250,
                     Y = 250 - Math.Cos(angleStep * i) * 250
                 })
                 .ToArray();
-            var connections = connectionTask.Select(c => new ConnectionWithBases
+            var connectionsWithBases = connections.Select(c => new ConnectionWithBases
             {
                 Connection = c,
                 From = points.First(b => b.Base.Name == c.From),
                 To = points.First(b => b.Base.Name == c.To),
             }).ToArray();
-            foreach(var conn in connections)
+            foreach(var conn in connectionsWithBases)
             {
                 conn.ControlPoints = (conn.From.X + (center.X - conn.From.X) / 2,
                     conn.From.Y + (center.Y - conn.From.Y) / 2,
@@ -65,10 +68,34 @@ namespace StarshipTraveler.Model
 
             foreach (var point in points)
             {
-                point.DirectConnections = connections.Where(c => c.From == point).ToArray();
+                point.DirectConnections = connectionsWithBases.Where(c => c.From == point).ToArray();
             }
 
-            return (points, connections);
+            return (points, connectionsWithBases);
+        }
+
+        public Base[] CalculateShortestPath(Connection[] connections, Base[] bases, string from, string to)
+        {
+            var graph = new Graph<GraphBase, Connection>();
+            var graphBases = GraphBase.BasesToGraphBases(bases);
+
+            foreach (var b in graphBases)
+            {
+                b.GraphID = graph.AddNode(b);
+            }
+
+            foreach (var c in connections)
+            {
+                var fromBase = graphBases.First(b => b.Name == c.From);
+                var toBase = graphBases.First(b => b.Name == c.To);
+                graph.Connect(fromBase.GraphID, toBase.GraphID, c.Distance, c);
+                graph.Connect(toBase.GraphID, fromBase.GraphID, c.Distance, c);
+            }
+
+            var result = graph.Dijkstra(graphBases.First(b => b.Name == from).GraphID,
+                graphBases.First(b => b.Name == to).GraphID);
+            var steps = result.GetPath();
+            return steps.Select(i => graphBases.First(b => b.GraphID == i)).ToArray();
         }
     }
 }

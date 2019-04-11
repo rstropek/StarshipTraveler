@@ -1,5 +1,7 @@
 ﻿@page "/book"
 @inject HttpClient Http
+@inject IJSRuntime JsRuntime
+@inject IFlightplan Flightplan
 
 <div class="book">
     <h1>Book Your Ticket</h1>
@@ -52,16 +54,32 @@
 @functions {
     private Ticket Ticket { get; set; } = new Ticket { Date = DateTime.Today };
     private Base[] Bases { get; set; }
+    private Connection[] Connections { get; set; }
 
     protected override async Task OnInitAsync()
     {
         Bases = await Http.GetJsonAsync<Base[]>($"/api/bases");
+        Connections = await Http.GetJsonAsync<Connection[]>($"/api/connections");
     }
-    
+
     private async Task HandleValidSubmit()
     {
         // To demo reuse of validation logic uncomment the following line:
         // Ticket.Passenger = string.Empty;
+
+        var path = Flightplan.CalculateShortestPath(Connections, Bases, Ticket.From, Ticket.To);
+        if (path.Length == 0)
+        {
+            await JsRuntime.InvokeAsync<object>("starshipTravel.alert", "Sorry, no connection for this route");
+            return;
+        } else if (path.Length > 2)
+        {
+            var route = string.Join("-> ", path.Select(p => p.Name));
+            if (!await JsRuntime.InvokeAsync<bool>("starshipTravel.confirm", $"No direct route, we can offer {route}, ok?"))
+            {
+                return;
+            }
+        }
 
         await Http.PostJsonAsync("/api/tickets", Ticket);
     }
