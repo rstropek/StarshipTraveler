@@ -58,8 +58,8 @@
 
     protected override async Task OnInitAsync()
     {
-        Bases = await Http.GetJsonAsync<Base[]>($"/api/bases");
-        Connections = await Http.GetJsonAsync<Connection[]>($"/api/connections");
+        Bases = await Http.GetJsonAsync<Base[]>($"api/bases");
+        Connections = await Http.GetJsonAsync<Connection[]>($"api/connections");
     }
 
     private async Task HandleValidSubmit()
@@ -81,6 +81,6 @@
             }
         }
 
-        await Http.PostJsonAsync("/api/tickets", Ticket);
+        await Http.PostJsonAsync("api/tickets", Ticket);
     }
 }
