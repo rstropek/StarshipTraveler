@@ -27,7 +27,7 @@
 
     protected override async Task OnInitAsync()
     {
-        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("/api/tickets");
+        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("api/tickets");
         RefreshTickets();
     }
 

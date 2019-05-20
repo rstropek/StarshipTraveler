@@ -37,9 +37,9 @@
 
     protected override async Task OnInitAsync()
     {
-        Ticket = await Http.GetJsonAsync<Ticket>($"/api/tickets/{TicketId}");
-        var fromBaseTask = Http.GetJsonAsync<Base>($"/api/bases/{Ticket.From}");
-        var toBaseTask = Http.GetJsonAsync<Base>($"/api/bases/{Ticket.To}");
+        Ticket = await Http.GetJsonAsync<Ticket>($"api/tickets/{TicketId}");
+        var fromBaseTask = Http.GetJsonAsync<Base>($"api/bases/{Ticket.From}");
+        var toBaseTask = Http.GetJsonAsync<Base>($"api/bases/{Ticket.To}");
         await Task.WhenAll(fromBaseTask, toBaseTask);
 
         FromBase = fromBaseTask.Result;

@@ -11,25 +11,35 @@
     }
     else
     {
+        <TimeSelector bind-Time="@Time" />
         <div class="row">
-            <ul>
-                @foreach (var ticket in Tickets)
-                {
-                    <li>@ticket.Passenger</li>
-                }
-            </ul>
+            @foreach (var ticket in Tickets)
+            {
+                <TicketCard Ticket="@ticket" />
+            }
         </div>
     }
 </div>
 
 @functions {
-    private TimeRelation Time { get; set; }
+    private TimeRelation time = TimeRelation.Past;
+    private TimeRelation Time
+    {
+        get => time;
+        set
+        {
+            time = value;
+            RefreshTickets();
+            StateHasChanged();
+        }
+    }
+
     private IEnumerable<Ticket> AllTickets { get; set; }
     private IEnumerable<Ticket> Tickets { get; set; }
 
     protected override async Task OnInitAsync()
     {
-        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("/api/tickets");
+        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("api/tickets");
         RefreshTickets();
     }
 
