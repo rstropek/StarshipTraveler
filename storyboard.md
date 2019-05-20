@@ -18,7 +18,7 @@
 
 * Add reference from *Client* to *Model*
 
-* Uncomment `@using StarshipTraveler.Model` in *_ViewImports.cshtml*
+* Uncomment `@using StarshipTraveler.Model` in *_Imports.razor*
 
 * Copy *010-Basic TicketList* into *Client/Pages*
 
@@ -34,11 +34,11 @@
 
 * Add reference from *Client* to *Components*
 
-* Uncomment `@using StarshipTraveler.Components` in *_ViewImports.cshtml*
+* Uncomment `@using StarshipTraveler.Components` in *_Imports.razor*
 
 * Copy...
-  * ...*020-UI Composition/TicketCard.cshtml* and *TicketQRCode.cshtml* into *Components*
-  * ...*020-UI Composition/TicketList.cshtml* into *Client*
+  * ...*020-UI Composition/TicketCard.razor* and *TicketQRCode.razor* into *Components*
+  * ...*020-UI Composition/TicketList.razor* into *Client*
 
 * Talking points:
   * Reusable component libraries (run on server and client)
@@ -49,8 +49,8 @@
 ## More Complex Parent/Child Relationships
 
 * Copy...
-  * ...*030-Parent-Child/TimeSelector.cshtml* into *Components*
-  * ...*030-Parent-Child/TicketList.cshtml* into *Client*
+  * ...*030-Parent-Child/TimeSelector.razor* into *Components*
+  * ...*030-Parent-Child/TicketList.razor* into *Client*
 
 * Talking points:
   * Enabling two-way binding with parameters (in *TimeSelector* and *TicketList*)
@@ -60,17 +60,17 @@
 ## More About Router
 
 * Copy...
-  * ...*040-Router/BaseImage.cshtml* into *Components*
-  * ...*040-Router/TicketDetails.cshtml* into *Client*
+  * ...*040-Router/BaseImage.razor* into *Components*
+  * ...*040-Router/TicketDetails.razor* into *Client*
 
 * Talking points:
   * Route parameter
   * Parallel web requests with `Task`-based programming model
-  * Links using `a href` (*TicketQRCode.cshtml*)
+  * Links using `a href` (*TicketQRCode.razor*)
 
 ## Razor Compiler
 
-* Show *TicketList.cshtml.g.cs* in *Client/Pages*
+* Show *TicketList.razor.g.cs* in *Client/Pages*
 
 * Talking points:
   * *cshtml* becomes C# classes
@@ -78,19 +78,19 @@
 
 * Copy...
   * ...*050-Razor Compiler/FlightNetwork.cs* into *Components*
-  * ...*050-Razor Compiler/Network.cshtml* into *Client*
+  * ...*050-Razor Compiler/Network.razor* into *Client*
   * ...*050-Razor Compiler/Flightplan.cs* into *Model*
 
 * Add `services.AddSingleton<IFlightplan, Flightplan>();` to *Client/Startup.cs*
 
 * Talking points:
-  * C#-only components (*FlightNetwork.cs* and *Network.cshtml*)
+  * C#-only components (*FlightNetwork.cs* and *Network.razor*)
   * Render Trees
   * DI for application services (`IFlightplan`)
 
 ## Forms and Validation
 
-* Copy *060-Forms-Validation/BookTicket.cshtml* into *Client*
+* Copy *060-Forms-Validation/BookTicket.razor* into *Client*
 
 * Talking points:
   * Blazor forms and validation engine
@@ -101,7 +101,7 @@
 ## JS Interop
 
 * Copy...
-  * ...*070-JS Interop/BookTicket.cshtml* into *Client*
+  * ...*070-JS Interop/BookTicket.razor* into *Client*
   * ...*070-JS Interop/index.html* into *Client*
   * ...*070-JS Interop/Flightplan.cs* into *Model*
 
