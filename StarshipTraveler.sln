@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Model", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Components", "StarshipTraveler.Components\StarshipTraveler.Components.csproj", "{B6EFDC51-FAD6-4AC4-B244-94D24243A71D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartshipTraveler.ServerSide", "StartshipTraveler.ServerSide\StartshipTraveler.ServerSide.csproj", "{625B8C55-9B51-4F15-9FB1-6D76475B1630}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B6EFDC51-FAD6-4AC4-B244-94D24243A71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6EFDC51-FAD6-4AC4-B244-94D24243A71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6EFDC51-FAD6-4AC4-B244-94D24243A71D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{625B8C55-9B51-4F15-9FB1-6D76475B1630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{625B8C55-9B51-4F15-9FB1-6D76475B1630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{625B8C55-9B51-4F15-9FB1-6D76475B1630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{625B8C55-9B51-4F15-9FB1-6D76475B1630}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
