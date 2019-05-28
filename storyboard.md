@@ -112,3 +112,13 @@
 * Talking points:
   * Benefit from large C# ecosystem of business logic libraries
   * JS interop to interact with (existing) JavaScript
+
+## Server-Side Blazor
+
+* Open completed [StarshipTraveler.sln](StarshipTraveler.sln)
+
+* Run *StarshipTraveler.ServerSide* project
+
+* Show WebSockets traffic in Chrome dev tools
+
+* Show that code for pages are identical
