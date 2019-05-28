@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.RenderTree;
 using StarshipTraveler.Model;
 using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -44,7 +45,7 @@ namespace StarshipTraveler.Components
                 foreach (var conn in Connections)
                 {
                     builder.OpenElement(7, "path");
-                    builder.AddAttribute(8, "d", $"M {conn.From.X},{conn.From.Y} C {conn.ControlPoints.pFromX},{conn.ControlPoints.pFromY} {conn.ControlPoints.pToX},{conn.ControlPoints.pToY} {conn.To.X},{conn.To.Y}");
+                    builder.AddAttribute(8, "d", $"M {conn.From.X.ToString(CultureInfo.InvariantCulture)},{conn.From.Y.ToString(CultureInfo.InvariantCulture)} C {conn.ControlPoints.pFromX.ToString(CultureInfo.InvariantCulture)},{conn.ControlPoints.pFromY.ToString(CultureInfo.InvariantCulture)} {conn.ControlPoints.pToX.ToString(CultureInfo.InvariantCulture)},{conn.ControlPoints.pToY.ToString(CultureInfo.InvariantCulture)} {conn.To.X.ToString(CultureInfo.InvariantCulture)},{conn.To.Y.ToString(CultureInfo.InvariantCulture)}");
                     builder.AddAttribute(9, "class", conn.Active ? "active" : "");
                     builder.CloseElement();
                 }
@@ -53,22 +54,22 @@ namespace StarshipTraveler.Components
                 {
                     builder.OpenElement(10, "circle");
                     builder.AddAttribute(11, "r", 5);
-                    builder.AddAttribute(12, "cx", point.X);
-                    builder.AddAttribute(13, "cy", point.Y);
+                    builder.AddAttribute(12, "cx", point.X.ToString(CultureInfo.InvariantCulture));
+                    builder.AddAttribute(13, "cy", point.Y.ToString(CultureInfo.InvariantCulture));
                     builder.AddAttribute(14, "class", "pulse-circle " + (point.Active ? "active" : "inactive"));
                     builder.CloseElement();
 
                     builder.OpenElement(15, "text");
-                    builder.AddAttribute(16, "x", point.X + 10);
-                    builder.AddAttribute(17, "y", point.Y + 10);
+                    builder.AddAttribute(16, "x", point.X.ToString(CultureInfo.InvariantCulture) + 10);
+                    builder.AddAttribute(17, "y", point.Y.ToString(CultureInfo.InvariantCulture) + 10);
                     builder.AddContent(18, point.Base.Name);
                     builder.CloseElement();
 
                     builder.OpenElement(19, "circle");
                     builder.AddAttribute(20, "r", 5);
                     builder.AddAttribute(21, "fill", "white");
-                    builder.AddAttribute(22, "cx", point.X);
-                    builder.AddAttribute(23, "cy", point.Y);
+                    builder.AddAttribute(22, "cx", point.X.ToString(CultureInfo.InvariantCulture));
+                    builder.AddAttribute(23, "cy", point.Y.ToString(CultureInfo.InvariantCulture));
                     builder.AddAttribute(24, "onmouseenter", EventCallback.Factory.Create<UIMouseEventArgs>(this, new Action(() => point.SetActive())));
                     builder.AddAttribute(25, "onmouseleave", EventCallback.Factory.Create<UIMouseEventArgs>(this, new Action(() => point.SetActive(false))));
                     builder.CloseElement();
