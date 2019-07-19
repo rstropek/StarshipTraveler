@@ -11,7 +11,7 @@
     }
     else
     {
-        <TimeSelector bind-Time="@Time" />
+        <TimeSelector @bind-Time="@Time" />
         <div class="row">
             @foreach (var ticket in Tickets)
             {
@@ -21,7 +21,7 @@
     }
 </div>
 
-@functions {
+@code {
     private TimeRelation time = TimeRelation.Past;
     private TimeRelation Time
     {

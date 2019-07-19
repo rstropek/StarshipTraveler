@@ -2,12 +2,12 @@
 
 <div class="btn-group" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-secondary @((Time == TimeRelation.Past) ? "bg-info" : "")"
-            onclick="@SwitchToPast">Past Travels</button>
+            @onclick="@SwitchToPast">Past Travels</button>
     <button type="button" class="btn btn-secondary @((Time == TimeRelation.Upcoming) ? "bg-info" : "")"
-            onclick="@SwitchToUpcoming">Upcoming Travels</button>
+            @onclick="@SwitchToUpcoming">Upcoming Travels</button>
 </div>
 
-@functions {
+@code {
     [Parameter]
     private TimeRelation Time { get; set; }
 
