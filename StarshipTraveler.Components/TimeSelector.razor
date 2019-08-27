@@ -9,10 +9,10 @@
 
 @code {
     [Parameter]
-    private TimeRelation Time { get; set; }
+    public TimeRelation Time { get; set; }
 
     [Parameter]
-    private Action<TimeRelation> TimeChanged { get; set; }
+    public Action<TimeRelation> TimeChanged { get; set; }
 
     void SwitchToPast()
     {

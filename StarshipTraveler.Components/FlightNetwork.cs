@@ -20,10 +20,10 @@ namespace StarshipTraveler.Components
 
         private ConnectionWithBases[] Connections { get; set; }
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            var connectionTask = Http.GetJsonAsync<Connection[]>("api/connections");
-            var baseTask = Http.GetJsonAsync<Base[]>("api/bases");
+            var connectionTask = Http.GetJsonAsync<Connection[]>("http://localhost:5000/api/connections");
+            var baseTask = Http.GetJsonAsync<Base[]>("http://localhost:5000/api/bases");
             await Task.WhenAll(connectionTask, baseTask);
             (Points, Connections) = Flightplan.PrepareFlightplan(connectionTask.Result, baseTask.Result, (250d, 250d));
         }

@@ -37,7 +37,7 @@
     private IEnumerable<Ticket> AllTickets { get; set; }
     private IEnumerable<Ticket> Tickets { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("api/tickets");
         RefreshTickets();

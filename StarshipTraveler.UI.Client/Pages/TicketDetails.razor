@@ -29,13 +29,13 @@
 
 @code {
     [Parameter]
-    private string TicketId { get; set; }
+    public string TicketId { get; set; }
 
     private Ticket Ticket { get; set; }
     private Base FromBase { get; set; }
     private Base ToBase { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         Ticket = await Http.GetJsonAsync<Ticket>($"api/tickets/{TicketId}");
         var fromBaseTask = Http.GetJsonAsync<Base>($"api/bases/{Ticket.From}");

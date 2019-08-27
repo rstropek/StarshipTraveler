@@ -56,7 +56,7 @@
     private Base[] Bases { get; set; }
     private Connection[] Connections { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         Bases = await Http.GetJsonAsync<Base[]>($"api/bases");
         Connections = await Http.GetJsonAsync<Connection[]>($"api/connections");
