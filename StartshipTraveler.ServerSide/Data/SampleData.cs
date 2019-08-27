@@ -10,15 +10,15 @@ namespace StarshipTraveler.UI.Server.Data
     {
         public static Base[] Bases { get; } = new[]
         {
-            new Base { Name = "Cybertron", Image = "../images/cybertron.jpg" },
-            new Base { Name = "Earth", Image = "../images/earth.jpg" },
-            new Base { Name = "Krypton", Image = "../images/krypton.jpg" },
-            new Base { Name = "Pandora", Image = "../images/pandora.jpg" },
-            new Base { Name = "Arrakis", Image = "../images/arrakis.jpg" },
-            new Base { Name = "Tatooine", Image = "../images/tatooine.jpg" },
-            new Base { Name = "Vulcan", Image="../images/vulcan.png" },
-            new Base { Name = "Decapod 10", Image="../images/decapod-10.jpg" },
-            new Base { Name = "Magrathea", Image="../images/magrathea.png" }
+            new Base { Name = "Cybertron", Image = "_content/StarshipTraveler.Components/images/cybertron.jpg" },
+            new Base { Name = "Earth", Image = "_content/StarshipTraveler.Components/images/earth.jpg" },
+            new Base { Name = "Krypton", Image = "_content/StarshipTraveler.Components/images/krypton.jpg" },
+            new Base { Name = "Pandora", Image = "_content/StarshipTraveler.Components/images/pandora.jpg" },
+            new Base { Name = "Arrakis", Image = "_content/StarshipTraveler.Components/images/arrakis.jpg" },
+            new Base { Name = "Tatooine", Image = "_content/StarshipTraveler.Components/images/tatooine.jpg" },
+            new Base { Name = "Vulcan", Image="_content/StarshipTraveler.Components/images/vulcan.png" },
+            new Base { Name = "Decapod 10", Image="_content/StarshipTraveler.Components/images/decapod-10.jpg" },
+            new Base { Name = "Magrathea", Image="_content/StarshipTraveler.Components/images/magrathea.png" }
 
         };
 

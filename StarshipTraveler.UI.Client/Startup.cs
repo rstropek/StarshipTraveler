@@ -13,7 +13,7 @@ namespace StarshipTraveler.UI.Client
 
         public void Configure(IComponentsApplicationBuilder app)
         {
-            app.AddComponent<App>("app");
+            app.AddComponent<StarshipTraveler.Components.App>("app");
         }
     }
 }

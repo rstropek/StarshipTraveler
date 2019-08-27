@@ -18,7 +18,7 @@ namespace StartshipTraveler.ServerSide
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddRazorPagesOptions(options => { options.RootDirectory = "/Blazor"; });
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<IFlightplan, Flightplan>();
@@ -39,7 +39,7 @@ namespace StartshipTraveler.ServerSide
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapBlazorHub();
+                endpoints.MapBlazorHub<StarshipTraveler.Components.App>(selector: "app");
                 endpoints.MapFallbackToPage("/_Host");
                 endpoints.MapDefaultControllerRoute();
             });
