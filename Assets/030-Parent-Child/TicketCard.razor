@@ -17,7 +17,7 @@
 
 @functions {
     [Parameter]
-    private Ticket Ticket { get; set; }
+    public Ticket Ticket { get; set; }
 
     private string GetTicketLink(string ticketID) => $"tickets/{ticketID}";
 }
