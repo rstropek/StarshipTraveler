@@ -33,7 +33,7 @@
 ## Ticket Card
 
 * Copy...
-  * ...*020-UI Composition/TicketCard.razor* and *TicketQRCode.razor* and *TicketListrazor* into *Components*
+  * ...*020-UI Composition/TicketCard.razor* and *TicketQRCode.razor* and *TicketList.razor* into *Components*
 
 * Talking points:
   * Reusable component libraries (run on server and client)
