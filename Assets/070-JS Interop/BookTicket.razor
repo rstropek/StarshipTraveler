@@ -11,15 +11,15 @@
 
         <div class="form-group">
             <label for="passenger">Passenger</label>
-            <InputText id="passenger" class="form-control" bind-Value="@Ticket.Passenger" />
+            <InputText id="passenger" class="form-control" @bind-Value="@Ticket.Passenger" />
         </div>
         <div class="form-group">
             <label for="date">Date</label>
-            <InputDate id="date" class="form-control" bind-Value="@Ticket.Date" />
+            <InputDate id="date" class="form-control" @bind-Value="@Ticket.Date" />
         </div>
         <div class="form-group">
             <label for="from">From</label>
-            <InputSelect id="from" class="form-control" bind-Value="@Ticket.From">
+            <InputSelect id="from" class="form-control" @bind-Value="@Ticket.From">
                 @if (Bases != null)
                 {
                     <option value=""></option>
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="to">To</label>
-            <InputSelect id="to" class="form-control" bind-Value="@Ticket.To">
+            <InputSelect id="to" class="form-control" @bind-Value="@Ticket.To">
                 @if (Bases != null)
                 {
                     <option value=""></option>
@@ -58,8 +58,8 @@
 
     protected override async Task OnInitAsync()
     {
-        Bases = await Http.GetJsonAsync<Base[]>($"localhost:5000/api/bases");
-        Connections = await Http.GetJsonAsync<Connection[]>($"localhost:5000/api/connections");
+        Bases = await Http.GetJsonAsync<Base[]>($"http://localhost:5000/api/bases");
+        Connections = await Http.GetJsonAsync<Connection[]>($"http://localhost:5000/api/connections");
     }
 
     private async Task HandleValidSubmit()
@@ -81,6 +81,6 @@
             }
         }
 
-        await Http.PostJsonAsync("localhost:5000/api/tickets", Ticket);
+        await Http.PostJsonAsync("http://localhost:5000/api/tickets", Ticket);
     }
 }

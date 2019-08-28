@@ -56,8 +56,8 @@
 
     protected override async Task OnInitAsync()
     {
-        Bases = await Http.GetJsonAsync<Base[]>($"localhost:5000/api/bases");
-        Connections = await Http.GetJsonAsync<Connection[]>($"localhost:5000/api/connections");
+        Bases = await Http.GetJsonAsync<Base[]>($"http://localhost:5000/api/bases");
+        Connections = await Http.GetJsonAsync<Connection[]>($"http://localhost:5000/api/connections");
     }
 
     private async Task HandleValidSubmit()
@@ -65,6 +65,6 @@
         // To demo reuse of validation logic uncomment the following line:
         // Ticket.Passenger = string.Empty;
 
-        await Http.PostJsonAsync("localhost:5000/api/tickets", Ticket);
+        await Http.PostJsonAsync("http://localhost:5000/api/tickets", Ticket);
     }
 }

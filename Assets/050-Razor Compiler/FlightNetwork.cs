@@ -21,8 +21,8 @@ namespace StarshipTraveler.Components
 
         protected override async Task OnInitAsync()
         {
-            var connectionTask = Http.GetJsonAsync<Connection[]>("localhost:5000/api/connections");
-            var baseTask = Http.GetJsonAsync<Base[]>("localhost:5000/api/bases");
+            var connectionTask = Http.GetJsonAsync<Connection[]>("http://localhost:5000/api/connections");
+            var baseTask = Http.GetJsonAsync<Base[]>("http://localhost:5000/api/bases");
             await Task.WhenAll(connectionTask, baseTask);
             (Points, Connections) = Flightplan.PrepareFlightplan(connectionTask.Result, baseTask.Result, (250d, 250d));
         }
