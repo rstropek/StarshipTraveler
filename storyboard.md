@@ -20,7 +20,7 @@
 
 * Uncomment `@using StarshipTraveler.Model` in *_Imports.razor*
 
-* Copy *010-Basic TicketList* into *Client/Pages*
+* Copy *010-Basic TicketList* into *Components/Pages*
 
 * Talking points:
   * Razor syntax (mention code-behind with inheritance)
