@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Blazor.Hosting;
 
-namespace StarshipTraveler.UI.Client
+namespace StarshipTraveler.Client
 {
     public class Program
     {

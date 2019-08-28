@@ -41,7 +41,6 @@ namespace StartshipTraveler.ServerSide
             {
                 endpoints.MapBlazorHub<StarshipTraveler.Components.App>(selector: "app");
                 endpoints.MapFallbackToPage("/_Host");
-                endpoints.MapDefaultControllerRoute();
             });
         }
     }
