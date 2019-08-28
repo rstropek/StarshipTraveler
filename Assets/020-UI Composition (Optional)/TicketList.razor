@@ -20,14 +20,14 @@
     }
 </div>
 
-@functions {
+@code {
     private TimeRelation Time { get; set; }
     private IEnumerable<Ticket> AllTickets { get; set; }
     private IEnumerable<Ticket> Tickets { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
-        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("api/tickets");
+        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("http://localhost:5000/api/tickets");
         RefreshTickets();
     }
 

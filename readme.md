@@ -31,4 +31,5 @@ Do you want to try the demo yourself? Here is what you do:
 
 ![Rainer on Stage](rainer-on-stage.jpg)
 
-The DevOne team recorded my session. I will add a link once it becomes available.
+Recording of the session at DevOne Linz in Spring 2019:
+https://www.youtube.com/watch?v=_gYgkZ1UBQ4

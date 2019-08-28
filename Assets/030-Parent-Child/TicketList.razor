@@ -11,7 +11,7 @@
     }
     else
     {
-        <TimeSelector bind-Time="@Time" />
+        <TimeSelector @bind-Time="@Time" />
         <div class="row">
             @foreach (var ticket in Tickets)
             {
@@ -21,7 +21,7 @@
     }
 </div>
 
-@functions {
+@code {
     private TimeRelation time = TimeRelation.Past;
     private TimeRelation Time
     {
@@ -37,9 +37,9 @@
     private IEnumerable<Ticket> AllTickets { get; set; }
     private IEnumerable<Ticket> Tickets { get; set; }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
-        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("api/tickets");
+        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("http://localhost:5000/api/tickets");
         RefreshTickets();
     }
 
