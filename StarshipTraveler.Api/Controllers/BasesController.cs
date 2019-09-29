@@ -6,8 +6,9 @@ using System.Linq;
 
 namespace StarshipTraveler.UI.Server.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class BasesController : Controller
+    public class BasesController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<Base> Bases() => SampleData.Bases;

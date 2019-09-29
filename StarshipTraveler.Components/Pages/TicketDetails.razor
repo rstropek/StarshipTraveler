@@ -1,6 +1,6 @@
 ﻿@page "/tickets/{TicketId}"
 @layout Shared.MainLayout
-@inject HttpClient Http
+@inject IStarshipApi StarshipApi
 
 <div class="ticket-details">
     <h1>Your Ticket @TicketId</h1>
@@ -38,9 +38,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Ticket = await Http.GetJsonAsync<Ticket>($"http://localhost:5000/api/tickets/{TicketId}");
-        var fromBaseTask = Http.GetJsonAsync<Base>($"http://localhost:5000/api/bases/{Ticket.From}");
-        var toBaseTask = Http.GetJsonAsync<Base>($"http://localhost:5000/api/bases/{Ticket.To}");
+        Ticket = await StarshipApi.GetTicketAsync(TicketId);
+        var fromBaseTask = StarshipApi.GetBaseAsync(Ticket.From);
+        var toBaseTask = StarshipApi.GetBaseAsync(Ticket.To);
         await Task.WhenAll(fromBaseTask, toBaseTask);
 
         FromBase = fromBaseTask.Result;

@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.RenderTree;
+using Microsoft.AspNetCore.Components.Web;
 using StarshipTraveler.Model;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -11,10 +14,10 @@ namespace StarshipTraveler.Components
     public class FlightNetwork : ComponentBase
     {
         [Inject]
-        private HttpClient Http { get; set; }
+        private IFlightplan Flightplan { get; set; }
 
         [Inject]
-        private IFlightplan Flightplan { get; set; }
+        private IStarshipApi StarshipApi { get; set; }
 
         private BasePoint[] Points { get; set; }
 
@@ -22,10 +25,10 @@ namespace StarshipTraveler.Components
 
         protected override async Task OnInitializedAsync()
         {
-            var connectionTask = Http.GetJsonAsync<Connection[]>("http://localhost:5000/api/connections");
-            var baseTask = Http.GetJsonAsync<Base[]>("http://localhost:5000/api/bases");
+            var connectionTask = StarshipApi.GetConnectionsAsync();
+            var baseTask = StarshipApi.GetBasisAsync();
             await Task.WhenAll(connectionTask, baseTask);
-            (Points, Connections) = Flightplan.PrepareFlightplan(connectionTask.Result, baseTask.Result, (250d, 250d));
+            (Points, Connections) = Flightplan.PrepareFlightplan(connectionTask.Result.ToArray(), baseTask.Result.ToArray(), (250d, 250d));
         }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
@@ -70,8 +73,8 @@ namespace StarshipTraveler.Components
                     builder.AddAttribute(21, "fill", "white");
                     builder.AddAttribute(22, "cx", point.X.ToString(CultureInfo.InvariantCulture));
                     builder.AddAttribute(23, "cy", point.Y.ToString(CultureInfo.InvariantCulture));
-                    builder.AddAttribute(24, "onmouseenter", EventCallback.Factory.Create<UIMouseEventArgs>(this, new Action(() => point.SetActive())));
-                    builder.AddAttribute(25, "onmouseleave", EventCallback.Factory.Create<UIMouseEventArgs>(this, new Action(() => point.SetActive(false))));
+                    builder.AddAttribute(24, "onmouseenter", EventCallback.Factory.Create<MouseEventArgs>(this, new Action(() => point.SetActive())));
+                    builder.AddAttribute(25, "onmouseleave", EventCallback.Factory.Create<MouseEventArgs>(this, new Action(() => point.SetActive(false))));
                     builder.CloseElement();
                 }
 

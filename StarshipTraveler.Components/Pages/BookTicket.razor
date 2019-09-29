@@ -1,8 +1,9 @@
 ﻿@page "/book"
-@inject HttpClient Http
 @inject IJSRuntime JsRuntime
 @inject IFlightplan Flightplan
+@inject IStarshipApi StarshipApi
 @layout Shared.MainLayout
+@using System.Linq
 
 <div class="book">
     <h1>Book Your Ticket</h1>
@@ -59,8 +60,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Bases = await Http.GetJsonAsync<Base[]>($"http://localhost:5000/api/bases");
-        Connections = await Http.GetJsonAsync<Connection[]>($"http://localhost:5000/api/connections");
+        Bases = (await StarshipApi.GetBasisAsync()).ToArray();
+        Connections = (await StarshipApi.GetConnectionsAsync()).ToArray();
     }
 
     private async Task HandleValidSubmit()
@@ -82,6 +83,6 @@
             }
         }
 
-        await Http.PostJsonAsync("http://localhost:5000/api/tickets", Ticket);
+        await StarshipApi.PostTicket(Ticket);
     }
 }

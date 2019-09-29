@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dijkstra.NET" Version="1.2.1" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0-preview6.19303.8" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
   </ItemGroup>
 
 

@@ -1,6 +1,6 @@
 ﻿@page "/"
 @page "/tickets"
-@inject HttpClient Http
+@inject IStarshipApi StarshipApi
 @layout Shared.MainLayout
 
 <h1>Your Tickets</h1>
@@ -40,7 +40,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("http://localhost:5000/api/tickets");
+        AllTickets = await StarshipApi.GetTicketsAsync();
         RefreshTickets();
     }
 

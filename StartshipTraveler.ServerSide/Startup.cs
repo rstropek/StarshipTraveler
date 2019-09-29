@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StarshipTraveler.Model;
+using StartshipTraveler.ServerSide.Data;
 
 namespace StartshipTraveler.ServerSide
 {
@@ -18,11 +19,13 @@ namespace StartshipTraveler.ServerSide
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().AddRazorPagesOptions(options => { options.RootDirectory = "/Blazor"; });
+            services.AddHttpClient();
+            services.AddSingleton<IFlightplan, Flightplan>();
+            services.AddSingleton<IStarshipApi, StarshipApi>();
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<IFlightplan, Flightplan>();
-            services.AddSingleton((_) => new HttpClient() { BaseAddress = new Uri("http://localhost:61412/", UriKind.Absolute) });
+            services.AddMvc().AddRazorPagesOptions(options => { options.RootDirectory = "/Blazor"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +42,7 @@ namespace StartshipTraveler.ServerSide
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapBlazorHub<StarshipTraveler.Components.App>(selector: "app");
+                endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
         }
