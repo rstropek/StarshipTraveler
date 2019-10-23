@@ -27,7 +27,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        AllTickets = await Http.GetJsonAsync<IEnumerable<Ticket>>("http://localhost:5000/api/tickets");
+        var response = await Http.GetAsync("http://localhost:5000/api/tickets");
+        var ticketsJson = await response.Content.ReadAsStringAsync();
+        AllTickets = JsonSerializer.Deserialize<List<Ticket>>(ticketsJson, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        });
         RefreshTickets();
     }
 

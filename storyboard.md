@@ -9,16 +9,17 @@
 * Run it, talk about use of WebAssembly
 
 * Talk about solution structure (everything **preview**)
-  * Backend ASP.NET Core 3
+  * Backend ASP.NET Core 3.1
   * Blazor Client
   * Components (reusable UI component library)
   * Model (data model, business logic)
+  * Server-side Blazor
 
 ## Ticket List
 
-* Add reference from *Components* to *Model*
+* Point out reference from *Components* to *Model*
 
-* Uncomment `@using StarshipTraveler.Model` in *_Imports.razor*
+* Point out `@using StarshipTraveler.Model` in *_Imports.razor*
 
 * Copy *010-Basic TicketList* into *Components/Pages*
 
@@ -36,7 +37,7 @@
   * ...*020-UI Composition/TicketCard.razor* and *TicketQRCode.razor* and *TicketList.razor* into *Components*
 
 * Talking points:
-  * Reusable component libraries (run on server and client)
+  * Reusable component libraries
   * Growing 3rd party ecosystem of components
   * UI composition
   * Parameters from parent to child components
@@ -44,7 +45,7 @@
 ## More Complex Parent/Child Relationships
 
 * Copy...
-  * ...*030-Parent-Child/TimeSelector.razor* and *TicketList.razor* into *Components* 
+  * ...*030-Parent-Child/TimeSelector.razor* and *TicketList.razor* into *Components*
 
 * Talking points:
   * Enabling two-way binding with parameters (in *TimeSelector* and *TicketList*)
@@ -63,7 +64,7 @@
 
 ## Razor Compiler
 
-* Show *TicketList.razor.g.cs* in *Components/Pages*
+* Show *TicketList.razor.g.cs* in *StarshipTraveler.Components\obj\Debug\netstandard2.0\Razor\Pages*
 
 * Talking points:
   * *cshtml* becomes C# classes
@@ -92,12 +93,13 @@
 
 ## JS Interop
 
+* Point out JavaScript in *StarshipTraveler.Client\wwwroot\index.html*
+
+* Point out NuGet reference to *Dijkstra.NET* in *Model*
+
 * Copy...
   * ...*070-JS Interop/BookTicket.razor* into *Components*
-  * ...*070-JS Interop/index.html* into *Client*
   * ...*070-JS Interop/Flightplan.cs* into *Model*
-
-* Add NuGet reference to *Dijkstra.NET* to *Model*
 
 * Let *Luke Skywalker* travel from *Tatooine* to *Earth*
 
@@ -105,12 +107,27 @@
   * Benefit from large C# ecosystem of business logic libraries
   * JS interop to interact with (existing) JavaScript
 
+## API Service
+
+* Copy...
+  * ...*080-ApiService/IStarshipApi.cs* and *080-ApiService/StarshipApi.cs* to *Model*
+  * ...*080-ApiService/Data/StarshipApi.cs* to *Client/Data*
+  * ...all files from *080-ApiService/Pages/* to *Components/Pages*
+
+* Add `services.AddSingleton<IStarshipApi, StarshipApi>();` to *Client/Startup.cs*
+
+* Talking points:
+  * Reuse of `HttpClient` in WASM
+  * Reuse of existing API clients that build on `HttpClient`
+
 ## Server-Side Blazor
 
-* Open completed [StarshipTraveler.sln](StarshipTraveler.sln)
+* Copy *StarshipTraveler.ServerSide* project into solution folder
 
-* Run *StarshipTraveler.ServerSide* project
+* Add *StarshipTraveler.ServerSide* to solution
 
-* Show WebSockets traffic in Chrome dev tools
+* Run server-side solution and show Websockets traffic
 
-* Show that code for pages are identical
+* Talking points:
+  * Reuse of Components
+  * Get production support today, switch to WASM later

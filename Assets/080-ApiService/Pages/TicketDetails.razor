@@ -1,5 +1,6 @@
 ﻿@page "/tickets/{TicketId}"
-@inject HttpClient Http
+@layout Shared.MainLayout
+@inject IStarshipApi StarshipApi
 
 <div class="ticket-details">
     <h1>Your Ticket @TicketId</h1>
@@ -37,34 +38,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Ticket = await GetTicketAsync(TicketId);
-        var fromBaseTask = GetBaseAsync(Ticket.From);
-        var toBaseTask = GetBaseAsync(Ticket.To);
+        Ticket = await StarshipApi.GetTicketAsync(TicketId);
+        var fromBaseTask = StarshipApi.GetBaseAsync(Ticket.From);
+        var toBaseTask = StarshipApi.GetBaseAsync(Ticket.To);
         await Task.WhenAll(fromBaseTask, toBaseTask);
 
         FromBase = fromBaseTask.Result;
         ToBase = toBaseTask.Result;
-    }
-    
-    private async Task<Base> GetBaseAsync(string baseId)
-    {
-        var response = await Http.GetAsync($"http://localhost:5000/api/bases/{baseId}");
-        var baseJson = await response.Content.ReadAsStringAsync();
-        var foundBase = JsonSerializer.Deserialize<Base>(baseJson, new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        });
-        return foundBase;
-    }
-    
-    private async Task<Ticket> GetTicketAsync(string ticketId)
-    {
-        var response = await Http.GetAsync($"http://localhost:5000/api/tickets/{ticketId}");
-        var ticketJson = await response.Content.ReadAsStringAsync();
-        var ticket = JsonSerializer.Deserialize<Ticket>(ticketJson, new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        });
-        return ticket;
     }
 }

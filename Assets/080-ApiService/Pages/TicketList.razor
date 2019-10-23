@@ -1,6 +1,7 @@
 ﻿@page "/"
 @page "/tickets"
-@inject HttpClient Http
+@inject IStarshipApi StarshipApi
+@layout Shared.MainLayout
 
 <h1>Your Tickets</h1>
 
@@ -39,12 +40,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var response = await Http.GetAsync("http://localhost:5000/api/tickets");
-        var ticketsJson = await response.Content.ReadAsStringAsync();
-        AllTickets = JsonSerializer.Deserialize<List<Ticket>>(ticketsJson, new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        });
+        AllTickets = await StarshipApi.GetTicketsAsync();
         RefreshTickets();
     }
 
