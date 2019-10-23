@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using StarshipTraveler.Components;
+using StarshipTraveler.Model;
 
 namespace StarshipTraveler.Client
 {

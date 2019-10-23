@@ -15,15 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="4.7.0-preview1.19504.10" />
+    <ProjectReference Include="..\StarshipTraveler.Components\StarshipTraveler.Components.csproj" />
+    <ProjectReference Include="..\StarshipTraveler.Model\StarshipTraveler.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\StarshipTraveler.Components\StarshipTraveler.Components.csproj" />
   </ItemGroup>
 
 </Project>

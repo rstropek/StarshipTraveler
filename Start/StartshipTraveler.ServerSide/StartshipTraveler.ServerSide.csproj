@@ -7,11 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Data\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\StarshipTraveler.Components\StarshipTraveler.Components.csproj" />
+        <ProjectReference Include="..\StarshipTraveler.Components\StarshipTraveler.Components.csproj" />
+        <ProjectReference Include="..\StarshipTraveler.Model\StarshipTraveler.Model.csproj" />
     </ItemGroup>
 
 </Project>
