@@ -6,8 +6,9 @@ using StarshipTraveler.Model;
 
 namespace StarshipTraveler.UI.Server.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class ConnectionsController : Controller
+    public class ConnectionsController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<Connection> Connections() =>

@@ -9,16 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace StarshipTraveler.UI.Server.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class TicketsController : Controller
+    public class TicketsController : ControllerBase
     {
-        private ILogger<TicketsController> Logger { get; set; }
-
-        public TicketsController(ILogger<TicketsController> logger)
-        {
-            Logger = logger;
-        }
-
         [HttpGet]
         public async Task<IEnumerable<Ticket>> Tickets()
         {
@@ -42,22 +36,8 @@ namespace StarshipTraveler.UI.Server.Controllers
         }
 
         [HttpPost]
-        public IActionResult Ticket([FromBody] Ticket ticket)
+        public IActionResult Ticket([FromBody] Ticket _)
         {
-            if (!ModelState.IsValid)
-            {
-                Logger.LogError("Model is invalid!");
-                foreach(var m in ModelState.Values)
-                {
-                    foreach(var e in m.Errors)
-                    {
-                        Logger.LogError(e.ErrorMessage);
-                    }
-                }
-
-                return BadRequest();
-            }
-
             // Do something with ticket
 
             return StatusCode(201);

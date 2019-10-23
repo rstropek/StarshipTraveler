@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:63656/",
+      "applicationUrl": "http://localhost:61412",
       "sslPort": 0
     }
   },
@@ -15,13 +15,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "StarshipTraveler.UI.Client": {
+    "StartshipTraveler.ServerSide": {
       "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "http://localhost:7000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:63660/"
+      }
     }
   }
 }
