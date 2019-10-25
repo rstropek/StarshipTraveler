@@ -23,6 +23,8 @@ Do you want to try the demo yourself? Here is what you do:
 
 * Clone the repository.
 
+* Start the [API project](StarshipTraveler.Api) because the Blazor frontend consumes this Web API.
+
 * Open the solution in the [*Start*](Start) folder.
 
 * Follow the steps mentioned in [*storyboard.md*](storyboard.md). You will find the files referenced there in the [*Assets*](Assets) folder.
