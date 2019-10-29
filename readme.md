@@ -23,7 +23,7 @@ Do you want to try the demo yourself? Here is what you do:
 
 * Clone the repository.
 
-* Start the [API project](StarshipTraveler.Api) because the Blazor frontend consumes this Web API.
+* Start the [API project](StarshipTraveler.Api) because the Blazor frontend consumes this Web API. **Note** that you should run the Web API as a console app. Don't start the API in IIS as this can lead to CORS issues.
 
 * Open the solution in the [*Start*](Start) folder.
 
