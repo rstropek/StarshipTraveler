@@ -1,17 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29512.175
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarshipTraveler.Model", "StarshipTraveler.Model\StarshipTraveler.Model.csproj", "{8B494E4D-E0E6-4EF1-BC3B-FF9AE8DE6131}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Model", "StarshipTraveler.Model\StarshipTraveler.Model.csproj", "{8B494E4D-E0E6-4EF1-BC3B-FF9AE8DE6131}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarshipTraveler.Api", "StarshipTraveler.Api\StarshipTraveler.Api.csproj", "{A234CA9D-1F8A-4015-B30B-9297840DC664}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Api", "StarshipTraveler.Api\StarshipTraveler.Api.csproj", "{A234CA9D-1F8A-4015-B30B-9297840DC664}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarshipTraveler.Components", "StarshipTraveler.Components\StarshipTraveler.Components.csproj", "{FD472503-4742-4968-BC45-991881B60847}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Components", "StarshipTraveler.Components\StarshipTraveler.Components.csproj", "{FD472503-4742-4968-BC45-991881B60847}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarshipTraveler.Client", "StarshipTraveler.Client\StarshipTraveler.Client.csproj", "{142DDB8F-3C3A-4720-9CC5-0E9348867689}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartshipTraveler.ServerSide", "StartshipTraveler.ServerSide\StartshipTraveler.ServerSide.csproj", "{7CF2B75D-A482-484A-B1FD-D56404714540}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Client", "StarshipTraveler.Client\StarshipTraveler.Client.csproj", "{142DDB8F-3C3A-4720-9CC5-0E9348867689}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8B494E4D-E0E6-4EF1-BC3B-FF9AE8DE6131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -74,17 +69,11 @@ Global
 		{142DDB8F-3C3A-4720-9CC5-0E9348867689}.Release|x64.Build.0 = Release|Any CPU
 		{142DDB8F-3C3A-4720-9CC5-0E9348867689}.Release|x86.ActiveCfg = Release|Any CPU
 		{142DDB8F-3C3A-4720-9CC5-0E9348867689}.Release|x86.Build.0 = Release|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Debug|x64.Build.0 = Debug|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Debug|x86.Build.0 = Debug|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Release|x64.ActiveCfg = Release|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Release|x64.Build.0 = Release|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Release|x86.ActiveCfg = Release|Any CPU
-		{7CF2B75D-A482-484A-B1FD-D56404714540}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {433C96C0-82D1-4549-96DE-B88F5F92A513}
 	EndGlobalSection
 EndGlobal
