@@ -12,7 +12,7 @@
     public TimeRelation Time { get; set; }
 
     [Parameter]
-    public Action<TimeRelation> TimeChanged { get; set; }
+    public Action<TimeRelation>? TimeChanged { get; set; }
 
     void SwitchToPast()
     {

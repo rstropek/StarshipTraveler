@@ -30,14 +30,19 @@
 
 @code {
     [Parameter]
-    public string TicketId { get; set; }
+    public string? TicketId { get; set; }
 
-    private Ticket Ticket { get; set; }
-    private Base FromBase { get; set; }
-    private Base ToBase { get; set; }
+    private Ticket? Ticket { get; set; }
+    private Base? FromBase { get; set; }
+    private Base? ToBase { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        if (TicketId == null)
+        {
+            throw new InvalidOperationException("Properties not initialized by DI. Configuration error?");
+        }
+
         Ticket = await StarshipApi.GetTicketAsync(TicketId);
         var fromBaseTask = StarshipApi.GetBaseAsync(Ticket.From);
         var toBaseTask = StarshipApi.GetBaseAsync(Ticket.To);

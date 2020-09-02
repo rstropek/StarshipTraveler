@@ -1,4 +1,5 @@
 ﻿using StarshipTraveler.Model;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -9,7 +10,7 @@ namespace StartshipTraveler.Model
 {
     public abstract class StarshipApiBase : IStarshipApi
     {
-        private HttpClient client;
+        private HttpClient? client;
 
         protected HttpClient Client
         {
@@ -18,6 +19,11 @@ namespace StartshipTraveler.Model
 
         public async Task<Base> GetBaseAsync(string baseId)
         {
+            if (client == null)
+            {
+                throw new InvalidOperationException("HTTP Client not initialized");
+            }
+
             var response = await client.GetAsync($"bases/{baseId}");
             var baseJson = await response.Content.ReadAsStringAsync();
             var foundBase = JsonSerializer.Deserialize<Base>(baseJson, new JsonSerializerOptions
@@ -29,6 +35,11 @@ namespace StartshipTraveler.Model
 
         public async Task<IEnumerable<Base>> GetBasisAsync()
         {
+            if (client == null)
+            {
+                throw new InvalidOperationException("HTTP Client not initialized");
+            }
+
             var response = await client.GetAsync($"bases");
             var basesJson = await response.Content.ReadAsStringAsync();
             var bases = JsonSerializer.Deserialize<List<Base>>(basesJson, new JsonSerializerOptions
@@ -40,6 +51,11 @@ namespace StartshipTraveler.Model
 
         public async Task<IEnumerable<Connection>> GetConnectionsAsync()
         {
+            if (client == null)
+            {
+                throw new InvalidOperationException("HTTP Client not initialized");
+            }
+
             var response = await client.GetAsync($"connections");
             var connectionsJson = await response.Content.ReadAsStringAsync();
             var connections = JsonSerializer.Deserialize<List<Connection>>(connectionsJson, new JsonSerializerOptions
@@ -51,6 +67,11 @@ namespace StartshipTraveler.Model
 
         public async Task<Ticket> GetTicketAsync(string ticketId)
         {
+            if (client == null)
+            {
+                throw new InvalidOperationException("HTTP Client not initialized");
+            }
+
             var response = await client.GetAsync($"tickets/{ticketId}");
             var ticketJson = await response.Content.ReadAsStringAsync();
             var ticket = JsonSerializer.Deserialize<Ticket>(ticketJson, new JsonSerializerOptions
@@ -62,6 +83,11 @@ namespace StartshipTraveler.Model
 
         public async Task<IEnumerable<Ticket>> GetTicketsAsync()
         {
+            if (client == null)
+            {
+                throw new InvalidOperationException("HTTP Client not initialized");
+            }
+
             var response = await client.GetAsync($"tickets");
             var ticketsJson = await response.Content.ReadAsStringAsync();
             var tickets = JsonSerializer.Deserialize<List<Ticket>>(ticketsJson, new JsonSerializerOptions
@@ -73,6 +99,11 @@ namespace StartshipTraveler.Model
 
         public async Task PostTicket(Ticket ticket)
         {
+            if (client == null)
+            {
+                throw new InvalidOperationException("HTTP Client not initialized");
+            }
+
             var content = new StringContent(JsonSerializer.Serialize(ticket), Encoding.UTF8, "application/json");
             await client.PostAsync($"tickets", content);
         }

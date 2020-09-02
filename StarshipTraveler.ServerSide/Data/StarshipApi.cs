@@ -2,7 +2,7 @@
 using System;
 using System.Net.Http;
 
-namespace StartshipTraveler.ServerSide.Data
+namespace StarshipTraveler.ServerSide.Data
 {
     public class StarshipApi : StarshipApiBase
     {
