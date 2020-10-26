@@ -30,6 +30,12 @@ namespace StartshipTraveler.Model
             {
                 PropertyNameCaseInsensitive = true,
             });
+
+            if (foundBase == null)
+            {
+                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
+            }
+
             return foundBase;
         }
 
@@ -46,6 +52,12 @@ namespace StartshipTraveler.Model
             {
                 PropertyNameCaseInsensitive = true,
             });
+
+            if (bases == null)
+            {
+                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
+            }
+
             return bases;
         }
 
@@ -62,6 +74,12 @@ namespace StartshipTraveler.Model
             {
                 PropertyNameCaseInsensitive = true,
             });
+
+            if (connections == null)
+            {
+                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
+            }
+
             return connections;
         }
 
@@ -78,6 +96,12 @@ namespace StartshipTraveler.Model
             {
                 PropertyNameCaseInsensitive = true,
             });
+
+            if (ticket == null)
+            {
+                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
+            }
+
             return ticket;
         }
 
@@ -94,6 +118,12 @@ namespace StartshipTraveler.Model
             {
                 PropertyNameCaseInsensitive = true,
             });
+
+            if (tickets == null)
+            {
+                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
+            }
+
             return tickets;
         }
 

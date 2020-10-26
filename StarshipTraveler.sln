@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.30428.66
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Model", "StarshipTraveler.Model\StarshipTraveler.Model.csproj", "{ADA1D66B-220D-470A-878F-1F3D9C887468}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarshipTraveler.Components", "StarshipTraveler.Components\StarshipTraveler.Components.csproj", "{2D272F26-B1ED-4DA6-98C4-537790132852}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Components", "StarshipTraveler.Components\StarshipTraveler.Components.csproj", "{2D272F26-B1ED-4DA6-98C4-537790132852}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Api", "StarshipTraveler.Api\StarshipTraveler.Api.csproj", "{B5081FB9-F766-4F8B-B3B3-F4F231AFC22E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarshipTraveler.Client", "StarshipTraveler.Client\StarshipTraveler.Client.csproj", "{AA1D30A3-0277-4C57-A25F-3E57D13F81BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.Client", "StarshipTraveler.Client\StarshipTraveler.Client.csproj", "{AA1D30A3-0277-4C57-A25F-3E57D13F81BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarshipTraveler.ServerSide", "StarshipTraveler.ServerSide\StarshipTraveler.ServerSide.csproj", "{A53E172F-5AE3-4A25-9A6A-E0EBFCFAEA87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarshipTraveler.ServerSide", "StarshipTraveler.ServerSide\StarshipTraveler.ServerSide.csproj", "{A53E172F-5AE3-4A25-9A6A-E0EBFCFAEA87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

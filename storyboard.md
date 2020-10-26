@@ -2,6 +2,8 @@
 
 **Theme:** Book travel between stars
 
+**Note: While the demo app has been updated to .NET 5 and latest version of Blazor, this storyboard has not been brought up to date!**
+
 ## Start
 
 * Open *Start* solution
