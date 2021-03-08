@@ -6,7 +6,7 @@ on:
       - 'master'
 
 jobs:
-  docker:
+  docker-api:
     runs-on: ubuntu-latest
     steps:
       -
@@ -32,3 +32,9 @@ jobs:
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+      - 
+        name: Deploy Stage
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: ${{ secrets.API_AZURE_WEBHOOK }}
+          method: 'POST'
