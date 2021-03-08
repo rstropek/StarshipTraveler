@@ -140,12 +140,24 @@
 
 ## Docker
 
-docker build -f Api.Dockerfile -t starshipapi .
-docker run -t -p 5000:80 --rm --name starshipapi starshipapi
-docker tag starshipapi rstropek/starshipapi
-docker push rstropek/starshipapi
+* Build API (can be done before presentation): `docker build -f Api.Dockerfile -t starshipapi .`
+  * Discuss Dockerfile for .NET 5
+* Run API: `docker run -t -p 5000:80 --rm --name starshipapi starshipapi`
+* (Optionally) Publish API:
 
-docker build -f Client.Dockerfile -t starshipclient .
-docker run -t -p 5002:80 --rm --name starshipclient starshipclient
-docker tag starshipclient rstropek/starshipclient
-docker push rstropek/starshipclient
+  ```bash
+  docker tag starshipapi rstropek/starshipapi
+  docker push rstropek/starshipapi
+  ```
+  
+* Build Client: `docker build -f Client.Dockerfile -t starshipclient .`
+  * Discuss Dockerfile for Blazor WASM
+* Run client: `docker run -t -p 5002:80 --rm --name starshipclient starshipclient`
+  * Show that client accesses API in cloud
+  * Discuss smaller footprint
+* (Optionally) Publish client:
+
+  ```bash
+  docker tag starshipclient rstropek/starshipclient
+  docker push rstropek/starshipclient
+  ```

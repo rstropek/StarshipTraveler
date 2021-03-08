@@ -15,6 +15,5 @@ RUN dotnet publish StarshipTraveler.Client -c release -o /app --no-restore
 
 # final stage/image
 FROM nginx:alpine
-COPY StarshipTraveler.Client/mime.types /etc/nginx/
-COPY StarshipTraveler.Client/nginx.conf /etc/nginx/
+COPY StarshipTraveler.Client.Nginx/ /etc/nginx/
 COPY --from=build /app/wwwroot /usr/share/nginx/html
