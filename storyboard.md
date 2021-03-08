@@ -149,7 +149,7 @@
   docker tag starshipapi rstropek/starshipapi
   docker push rstropek/starshipapi
   ```
-  
+
 * Build Client: `docker build -f Client.Dockerfile -t starshipclient .`
   * Discuss Dockerfile for Blazor WASM
 * Run client: `docker run -t -p 5002:80 --rm --name starshipclient starshipclient`
@@ -160,4 +160,16 @@
   ```bash
   docker tag starshipclient rstropek/starshipclient
   docker push rstropek/starshipclient
+  ```
+
+* Build Server: `docker build -f Server.Dockerfile -t starshipserver .`
+  * Discuss Dockerfile for Blazor WASM
+* Run client: `docker run -t -p 5004:80 --rm --name starshipserver starshipserver`
+  * Show that server accesses API from backend
+  * Discuss WebSocket connection
+* (Optionally) Publish client:
+
+  ```bash
+  docker tag starshipserver rstropek/starshipserver
+  docker push rstropek/starshipserver
   ```

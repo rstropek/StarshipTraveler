@@ -9,7 +9,7 @@ namespace StarshipTraveler.ServerSide.Data
     {
         public StarshipApi(IHttpClientFactory factory, IHostEnvironment hostEnvironment)
         {
-            var apiUrl = hostEnvironment.IsDevelopment() ? "http://localhost:5000/api/" : "https://starshipapi.azurewebsites.net";
+            var apiUrl = hostEnvironment.IsDevelopment() ? "http://localhost:5000/api/" : "https://starshipapi.azurewebsites.net/api/";
 
             var client = factory.CreateClient();
             client.BaseAddress = new Uri(apiUrl);

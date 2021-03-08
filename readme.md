@@ -1,3 +1,6 @@
+[![api](https://github.com/rstropek/StarshipTraveler/actions/workflows/api.yaml/badge.svg)](https://github.com/rstropek/StarshipTraveler/actions/workflows/api.yaml)
+[![client](https://github.com/rstropek/StarshipTraveler/actions/workflows/client.yaml/badge.svg)](https://github.com/rstropek/StarshipTraveler/actions/workflows/client.yaml)
+
 # Starship Traveler Blazor Demo
 
 ![Screenshot](starship-travel.gif)
@@ -27,6 +30,20 @@ Do you want to try the demo yourself? Here is what you do:
 * Open the solution in the [*Start*](Start) folder.
 
 * Follow the steps mentioned in [*storyboard.md*](storyboard.md). You will find the files referenced there in the [*Assets*](Assets) folder.
+
+## Docker
+
+This repository contains Dockerfiles for all three projects:
+
+* *Api.Dockerfile*
+* *Client.Dockerfile* (WASM Client)
+* *Server.Dockerfile* (Serverside Blazor)
+
+GitHub Actions build the Dockerfiles and publish the resulting images to Docker hub:
+
+* *rstropek/starshipapi*
+* *rstropek/starshipclient*
+* *rstropek/starshipserver*
 
 ## Recording
 
