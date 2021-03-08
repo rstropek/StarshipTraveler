@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - 'master'
-
+  workflow_dispatch:
+  
 jobs:
   docker-api:
     runs-on: ubuntu-latest
