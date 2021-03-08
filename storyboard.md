@@ -9,9 +9,11 @@
 * Open *Start* solution
 
 * Run it, talk about use of WebAssembly
+  * Show browser cache with .NET assemblies
+  * Demo deleting cache and reloading
 
-* Talk about solution structure (everything **preview**)
-  * Backend ASP.NET Core 3.1
+* Talk about solution structure
+  * Backend ASP.NET Core 5
   * Blazor Client
   * Components (reusable UI component library)
   * Model (data model, business logic)
@@ -76,7 +78,8 @@
   * ...*050-Razor Compiler/FlightNetwork.cs* and *Network.razor* into *Components*
   * ...*050-Razor Compiler/Flightplan.cs* into *Model*
 
-* Add `services.AddSingleton<IFlightplan, Flightplan>();` to *Client/Startup.cs*
+* Add `builder.Services.AddScoped<IFlightplan, Flightplan>();` to *Client/Startup.cs*
+* Add `services.AddSingleton<IFlightplan, Flightplan>();` to *ServerSide/Startup.cs*
 
 * Talking points:
   * C#-only components (*FlightNetwork.cs* and *Network.razor*)
@@ -116,7 +119,8 @@
   * ...*080-ApiService/Data/StarshipApi.cs* to *Client/Data*
   * ...all files from *080-ApiService/Pages/* to *Components/Pages*
 
-* Add `services.AddSingleton<IStarshipApi, StarshipApi>();` to *Client/Startup.cs*
+* Add `builder.Services.AddScoped<IStarshipApi, StarshipApi>();` to *Client/Startup.cs*
+* Add `services.AddSingleton<IStarshipApi, StarshipApi>();` to *ServerSide/Startup.cs*
 
 * Talking points:
   * Reuse of `HttpClient` in WASM

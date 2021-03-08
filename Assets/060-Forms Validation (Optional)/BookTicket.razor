@@ -1,6 +1,9 @@
 ﻿@page "/book"
+@layout Shared.MainLayout
 @inject HttpClient Http
 @using System.Text;
+@using System.Text.Json;
+@using System.Linq
 
 <div class="book">
     <h1>Book Your Ticket</h1>
@@ -50,10 +53,10 @@
 
 </div>
 
-@functions {
-    private Ticket Ticket { get; set; } = new Ticket { Date = DateTime.Today };
-    private Base[] Bases { get; set; }
-    private Connection[] Connections { get; set; }
+@code {
+    private Ticket Ticket { get; set; } = new Ticket { ID = string.Empty, Date = DateTime.Today };
+    private Base[]? Bases { get; set; }
+    private Connection[]? Connections { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -68,7 +71,7 @@
         var connections = JsonSerializer.Deserialize<Connection[]>(connectionsJson, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
-        });
+        })!;
         return connections;
     }
 
@@ -79,7 +82,7 @@
         var bases = JsonSerializer.Deserialize<Base[]>(basesJson, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
-        });
+        })!;
         return bases;
     }
 

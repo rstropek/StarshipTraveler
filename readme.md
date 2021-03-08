@@ -2,7 +2,7 @@
 
 ![Screenshot](starship-travel.gif)
 
-I created this demo app for the [DevOne 2019 conference](https://devone.at). It has been updated for my Blazor sessions at [Techorama Belgium 2019](https://techorama.be/), [.NET Day Switzerland](https://dotnetday.ch/), and the [*International JavaScript Conferences* in London and Munich](https://javascript-conference.com/). It showcases the capabilities of the ASP.NET Core Blazor framework.
+I created this demo app for the [DevOne 2019 conference](https://devone.at). It has been updated for my Blazor sessions at [Techorama Belgium 2019](https://techorama.be/), [.NET Day Switzerland](https://dotnetday.ch/), and the [*International JavaScript Conferences* in London and Munich](https://javascript-conference.com/), Webinar for [M&F Engineering, Switzerland](https://www.m-f.ch/events/event/29-webinare/73-webframeworks-webinar_2021). It showcases the capabilities of the ASP.NET Core Blazor framework.
 
 **Note** that this sample will not be continuously maintained. I will update it every now and then whenever I use it in workshops and/or conference talks. If you update and/or extend it, feel free to send me a pull request.
 

@@ -1,23 +1,24 @@
 ﻿@using StarshipTraveler.Model
+@layout Shared.MainLayout
 
 <div class="card">
-    <TicketQRCode TicketLink="@GetTicketLink(Ticket.ID)" />
+    <TicketQRCode TicketLink="@GetTicketLink(Ticket?.ID ?? string.Empty)" />
     <div class="card-body">
-        <h5 class="card-title">@Ticket.Passenger</h5>
+        <h5 class="card-title">@Ticket?.Passenger</h5>
         <p class="card-text">
-            This Ticket is for <span class="highlight">@Ticket.Passenger</span> to travel
-            from <span class="highlight">@Ticket.From to @Ticket.To</span>
-            on <span class="highlight">@Ticket.Date.ToString("D")</span>
+            This Ticket is for <span class="highlight">@Ticket?.Passenger</span> to travel
+            from <span class="highlight">@Ticket?.From to @Ticket?.To</span>
+            on <span class="highlight">@Ticket?.Date.ToString("D")</span>
         </p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Price: @Ticket.Price.ToString("#,##0.00")</li>
+        <li class="list-group-item">Price: @Ticket?.Price.ToString("#,##0.00")</li>
     </ul>
 </div>
 
 @code {
     [Parameter]
-    public Ticket Ticket { get; set; }
+    public Ticket? Ticket { get; set; }
 
     private string GetTicketLink(string ticketID) => $"/tickets/{ticketID}";
 }

@@ -1,6 +1,8 @@
 ﻿@page "/"
 @page "/tickets"
+@layout Shared.MainLayout
 @inject HttpClient Http
+@using System.Text.Json
 
 <h1>Your Tickets</h1>
 
@@ -34,8 +36,8 @@
         }
     }
 
-    private IEnumerable<Ticket> AllTickets { get; set; }
-    private IEnumerable<Ticket> Tickets { get; set; }
+    private IEnumerable<Ticket>? AllTickets { get; set; }
+    private IEnumerable<Ticket>? Tickets { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using StarshipTraveler.UI.Server.Data;
-using StarshipTraveler.Model;
 using System.Linq;
+using StarshipTraveler.Model;
 
 namespace StarshipTraveler.UI.Server.Controllers
 {

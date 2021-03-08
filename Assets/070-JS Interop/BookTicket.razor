@@ -1,8 +1,9 @@
 ﻿@page "/book"
-@inject HttpClient Http
-@using System.Text;
 @inject IJSRuntime JsRuntime
 @inject IFlightplan Flightplan
+@inject IStarshipApi StarshipApi
+@layout Shared.MainLayout
+@using System.Linq
 
 <div class="book">
     <h1>Book Your Ticket</h1>
@@ -52,47 +53,24 @@
 
 </div>
 
-@functions {
-    private Ticket Ticket { get; set; } = new Ticket { Date = DateTime.Today };
-    private Base[] Bases { get; set; }
-    private Connection[] Connections { get; set; }
+@code {
+    private Ticket Ticket { get; set; } = new Ticket { ID = string.Empty, Date = DateTime.Today };
+    private Base[]? Bases { get; set; }
+    private Connection[]? Connections { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Bases = await GetBasisAsync();
-        Connections = await GetConnectionsAsync();
-    }
-
-    private async Task<Connection[]> GetConnectionsAsync()
-    {
-        var response = await Http.GetAsync("http://localhost:5000/api/connections");
-        var connectionsJson = await response.Content.ReadAsStringAsync();
-        var connections = JsonSerializer.Deserialize<Connection[]>(connectionsJson, new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        });
-        return connections;
-    }
-
-    private async Task<Base[]> GetBasisAsync()
-    {
-        var response = await Http.GetAsync("http://localhost:5000/api/bases");
-        var basesJson = await response.Content.ReadAsStringAsync();
-        var bases = JsonSerializer.Deserialize<Base[]>(basesJson, new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-        });
-        return bases;
-    }
-
-    private async Task PostTicket(Ticket ticket)
-    {
-        var content = new StringContent(JsonSerializer.Serialize(ticket), Encoding.UTF8, "application/json");
-        await Http.PostAsync("http://localhost:5000/api/tickets", content);
+        Bases = (await StarshipApi.GetBasisAsync()).ToArray();
+        Connections = (await StarshipApi.GetConnectionsAsync()).ToArray();
     }
 
     private async Task HandleValidSubmit()
     {
+        if (Bases == null || Connections == null)
+        {
+            throw new InvalidOperationException("Collections not initialized");
+        }
+
         // To demo reuse of validation logic uncomment the following line:
         // Ticket.Passenger = string.Empty;
 
@@ -101,8 +79,7 @@
         {
             await JsRuntime.InvokeAsync<object>("starshipTravel.alert", "Sorry, no connection for this route");
             return;
-        }
-        else if (path.Length > 2)
+        } else if (path.Length > 2)
         {
             var route = string.Join("-> ", path.Select(p => p.Name));
             if (!await JsRuntime.InvokeAsync<bool>("starshipTravel.confirm", $"No direct route, we can offer {route}, ok?"))
@@ -111,6 +88,6 @@
             }
         }
 
-        await PostTicket(Ticket);
+        await StarshipApi.PostTicket(Ticket);
     }
 }

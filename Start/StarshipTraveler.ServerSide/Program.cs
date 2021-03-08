@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace StartshipTraveler.ServerSide
+namespace StarshipTraveler.ServerSide
 {
     public class Program
     {

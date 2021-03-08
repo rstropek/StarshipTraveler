@@ -1,11 +1,12 @@
 ﻿@using StarshipTraveler.Model
+@layout Shared.MainLayout
 
 <div class="base">
-    <img src="@Base.Image" />
-    <h2>@Base.Name</h2>
+    <img src="@Base?.Image" />
+    <h2>@Base?.Name</h2>
 </div>
 
 @code {
     [Parameter]
-    public Base Base { get; set; }
+    public Base? Base { get; set; }
 }

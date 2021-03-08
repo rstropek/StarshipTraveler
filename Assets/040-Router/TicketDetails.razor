@@ -1,5 +1,7 @@
 ﻿@page "/tickets/{TicketId}"
+@layout Shared.MainLayout
 @inject HttpClient Http
+@using System.Text.Json
 
 <div class="ticket-details">
     <h1>Your Ticket @TicketId</h1>
@@ -29,14 +31,19 @@
 
 @code {
     [Parameter]
-    public string TicketId { get; set; }
+    public string? TicketId { get; set; }
 
-    private Ticket Ticket { get; set; }
-    private Base FromBase { get; set; }
-    private Base ToBase { get; set; }
+    private Ticket? Ticket { get; set; }
+    private Base? FromBase { get; set; }
+    private Base? ToBase { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        if (TicketId == null)
+        {
+            throw new InvalidOperationException("Properties not initialized by DI. Configuration error?");
+        }
+
         Ticket = await GetTicketAsync(TicketId);
         var fromBaseTask = GetBaseAsync(Ticket.From);
         var toBaseTask = GetBaseAsync(Ticket.To);
@@ -45,7 +52,7 @@
         FromBase = fromBaseTask.Result;
         ToBase = toBaseTask.Result;
     }
-    
+
     private async Task<Base> GetBaseAsync(string baseId)
     {
         var response = await Http.GetAsync($"http://localhost:5000/api/bases/{baseId}");
@@ -53,10 +60,10 @@
         var foundBase = JsonSerializer.Deserialize<Base>(baseJson, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
-        });
+        })!;
         return foundBase;
     }
-    
+
     private async Task<Ticket> GetTicketAsync(string ticketId)
     {
         var response = await Http.GetAsync($"http://localhost:5000/api/tickets/{ticketId}");
@@ -64,7 +71,7 @@
         var ticket = JsonSerializer.Deserialize<Ticket>(ticketJson, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true,
-        });
+        })!;
         return ticket;
     }
 }
