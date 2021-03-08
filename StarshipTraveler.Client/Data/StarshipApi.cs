@@ -11,7 +11,7 @@ namespace StartshipTraveler.Client.Data
         {
             // Note Blazor environment. For more details see
             // https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/environments?view=aspnetcore-5.0
-            var apiUrl = hostEnvironment.IsDevelopment() ? "http://localhost:5000/api/" : "https://starshipapi.azurewebsites.net";
+            var apiUrl = hostEnvironment.IsDevelopment() ? "http://localhost:5000/api/" : "https://starshipapi.azurewebsites.net/api/";
 
             client.BaseAddress = new Uri(apiUrl);
             Client = client;

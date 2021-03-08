@@ -137,3 +137,15 @@
 * Talking points:
   * Reuse of Components
   * Get production support today, switch to WASM later
+
+## Docker
+
+docker build -f Api.Dockerfile -t starshipapi .
+docker run -t -p 5000:80 --rm --name starshipapi starshipapi
+docker tag starshipapi rstropek/starshipapi
+docker push rstropek/starshipapi
+
+docker build -f Client.Dockerfile -t starshipclient .
+docker run -t -p 5002:80 --rm --name starshipclient starshipclient
+docker tag starshipclient rstropek/starshipclient
+docker push rstropek/starshipclient
