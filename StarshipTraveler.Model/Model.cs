@@ -2,80 +2,73 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-// Bug in current preview -> will be removed later
-namespace System.Runtime.CompilerServices
+namespace StarshipTraveler.Model;
+
+public class Base
 {
-    public class IsExternalInit { }
+    public string? Name { get; set; }
+    public string? Image { get; set; }
+
+    public Base() { }
+
+    public Base(string name, string image)
+    {
+        Name = name;
+        Image = image;
+    }
 }
 
-namespace StarshipTraveler.Model
+public class GraphBase : Base
 {
-    public class Base
+    public GraphBase() { }
+
+    public GraphBase(uint graphID, string name, string image) : base(name, image)
     {
-        public string? Name { get; set; }
-        public string? Image { get; set; }
-
-        public Base() { }
-
-        public Base(string name, string image)
-        {
-            Name = name;
-            Image = image;
-        }
+        GraphID = graphID;
     }
 
-    public class GraphBase : Base
-    {
-        public GraphBase() { }
+    public static GraphBase[] BasesToGraphBases(Base[] bases) =>
+        Enumerable.Range(0, bases.Length).Select(i =>
+            new GraphBase((uint)i, bases[i].Name ?? string.Empty, bases[i].Image ?? string.Empty)).ToArray();
 
-        public GraphBase(uint graphID, string name, string image) : base(name, image)
-        {
-            GraphID = graphID;
-        }
+    public uint GraphID { get; set; }
+}
 
-        public static GraphBase[] BasesToGraphBases(Base[] bases) =>
-            Enumerable.Range(0, bases.Length).Select(i =>
-                new GraphBase((uint)i, bases[i].Name ?? string.Empty, bases[i].Image ?? string.Empty)).ToArray();
+public class Ticket
+{
+    [Required]
+    public DateTime Date { get; set; }
 
-        public uint GraphID { get; set; }
-    }
+    public string ID { get; set; } = string.Empty;
 
-    public class Ticket
-    {
-        [Required]
-        public DateTime Date { get; set; }
+    [Required]
+    public string From { get; set; } = string.Empty;
 
-        public string ID { get; set; } = string.Empty;
+    [Required]
+    public string To { get; set; } = string.Empty;
 
-        [Required]
-        public string From { get; set; } = string.Empty;
+    public decimal Price { get; set; }
 
-        [Required]
-        public string To { get; set; } = string.Empty;
+    [Required]
+    [StringLength(50, MinimumLength = 5, ErrorMessage = "Name must be between 5 and 50 characters!")]
+    public string Passenger { get; set; } = string.Empty;
 
-        public decimal Price { get; set; }
+    public TimeRelation Time => Date >= DateTime.Today ? TimeRelation.Upcoming : TimeRelation.Past;
+}
 
-        [Required]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Name must be between 5 and 50 characters!")]
-        public string Passenger { get; set; } = string.Empty;
+public enum TimeRelation
+{
+    Past,
+    Upcoming
+}
 
-        public TimeRelation Time => Date >= DateTime.Today ? TimeRelation.Upcoming : TimeRelation.Past;
-    }
+public class Connection : IEquatable<Connection>
+{
+    public string? From { get; set; }
+    public string? To { get; set; }
+    public int Distance { get; set; }
+    public decimal Price { get; set; }
 
-    public enum TimeRelation
-    {
-        Past,
-        Upcoming
-    }
-
-    public class Connection : IEquatable<Connection>
-    {
-        public string? From { get; set; }
-        public string? To { get; set; }
-        public int Distance { get; set; }
-        public decimal Price { get; set; }
-
-        public bool Equals(Connection other) =>
-            From == other.From && To == other.To && Distance == other.Distance && Price == other.Price;
-    }
+    public bool Equals(Connection other) =>
+        From == other.From && To == other.To && Distance == other.Distance && Price == other.Price;
 }

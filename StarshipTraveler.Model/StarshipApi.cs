@@ -6,136 +6,135 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace StartshipTraveler.Model
+namespace StartshipTraveler.Model;
+
+public abstract class StarshipApiBase : IStarshipApi
 {
-    public abstract class StarshipApiBase : IStarshipApi
+    private HttpClient? client;
+
+    protected HttpClient Client
     {
-        private HttpClient? client;
+        set { client = value; }
+    }
 
-        protected HttpClient Client
+    public async Task<Base> GetBaseAsync(string baseId)
+    {
+        if (client == null)
         {
-            set { client = value; }
+            throw new InvalidOperationException("HTTP Client not initialized");
         }
 
-        public async Task<Base> GetBaseAsync(string baseId)
+        var response = await client.GetAsync($"bases/{baseId}");
+        var baseJson = await response.Content.ReadAsStringAsync();
+        var foundBase = JsonSerializer.Deserialize<Base>(baseJson, new JsonSerializerOptions
         {
-            if (client == null)
-            {
-                throw new InvalidOperationException("HTTP Client not initialized");
-            }
+            PropertyNameCaseInsensitive = true,
+        });
 
-            var response = await client.GetAsync($"bases/{baseId}");
-            var baseJson = await response.Content.ReadAsStringAsync();
-            var foundBase = JsonSerializer.Deserialize<Base>(baseJson, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            });
-
-            if (foundBase == null)
-            {
-                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
-            }
-
-            return foundBase;
+        if (foundBase == null)
+        {
+            throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
         }
 
-        public async Task<IEnumerable<Base>> GetBasisAsync()
+        return foundBase;
+    }
+
+    public async Task<IEnumerable<Base>> GetBasisAsync()
+    {
+        if (client == null)
         {
-            if (client == null)
-            {
-                throw new InvalidOperationException("HTTP Client not initialized");
-            }
-
-            var response = await client.GetAsync($"bases");
-            var basesJson = await response.Content.ReadAsStringAsync();
-            var bases = JsonSerializer.Deserialize<List<Base>>(basesJson, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            });
-
-            if (bases == null)
-            {
-                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
-            }
-
-            return bases;
+            throw new InvalidOperationException("HTTP Client not initialized");
         }
 
-        public async Task<IEnumerable<Connection>> GetConnectionsAsync()
+        var response = await client.GetAsync($"bases");
+        var basesJson = await response.Content.ReadAsStringAsync();
+        var bases = JsonSerializer.Deserialize<List<Base>>(basesJson, new JsonSerializerOptions
         {
-            if (client == null)
-            {
-                throw new InvalidOperationException("HTTP Client not initialized");
-            }
+            PropertyNameCaseInsensitive = true,
+        });
 
-            var response = await client.GetAsync($"connections");
-            var connectionsJson = await response.Content.ReadAsStringAsync();
-            var connections = JsonSerializer.Deserialize<List<Connection>>(connectionsJson, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            });
-
-            if (connections == null)
-            {
-                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
-            }
-
-            return connections;
+        if (bases == null)
+        {
+            throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
         }
 
-        public async Task<Ticket> GetTicketAsync(string ticketId)
+        return bases;
+    }
+
+    public async Task<IEnumerable<Connection>> GetConnectionsAsync()
+    {
+        if (client == null)
         {
-            if (client == null)
-            {
-                throw new InvalidOperationException("HTTP Client not initialized");
-            }
-
-            var response = await client.GetAsync($"tickets/{ticketId}");
-            var ticketJson = await response.Content.ReadAsStringAsync();
-            var ticket = JsonSerializer.Deserialize<Ticket>(ticketJson, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            });
-
-            if (ticket == null)
-            {
-                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
-            }
-
-            return ticket;
+            throw new InvalidOperationException("HTTP Client not initialized");
         }
 
-        public async Task<IEnumerable<Ticket>> GetTicketsAsync()
+        var response = await client.GetAsync($"connections");
+        var connectionsJson = await response.Content.ReadAsStringAsync();
+        var connections = JsonSerializer.Deserialize<List<Connection>>(connectionsJson, new JsonSerializerOptions
         {
-            if (client == null)
-            {
-                throw new InvalidOperationException("HTTP Client not initialized");
-            }
+            PropertyNameCaseInsensitive = true,
+        });
 
-            var response = await client.GetAsync($"tickets");
-            var ticketsJson = await response.Content.ReadAsStringAsync();
-            var tickets = JsonSerializer.Deserialize<List<Ticket>>(ticketsJson, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            });
-
-            if (tickets == null)
-            {
-                throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
-            }
-
-            return tickets;
+        if (connections == null)
+        {
+            throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
         }
 
-        public async Task PostTicket(Ticket ticket)
-        {
-            if (client == null)
-            {
-                throw new InvalidOperationException("HTTP Client not initialized");
-            }
+        return connections;
+    }
 
-            var content = new StringContent(JsonSerializer.Serialize(ticket), Encoding.UTF8, "application/json");
-            await client.PostAsync($"tickets", content);
+    public async Task<Ticket> GetTicketAsync(string ticketId)
+    {
+        if (client == null)
+        {
+            throw new InvalidOperationException("HTTP Client not initialized");
         }
+
+        var response = await client.GetAsync($"tickets/{ticketId}");
+        var ticketJson = await response.Content.ReadAsStringAsync();
+        var ticket = JsonSerializer.Deserialize<Ticket>(ticketJson, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        });
+
+        if (ticket == null)
+        {
+            throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
+        }
+
+        return ticket;
+    }
+
+    public async Task<IEnumerable<Ticket>> GetTicketsAsync()
+    {
+        if (client == null)
+        {
+            throw new InvalidOperationException("HTTP Client not initialized");
+        }
+
+        var response = await client.GetAsync($"tickets");
+        var ticketsJson = await response.Content.ReadAsStringAsync();
+        var tickets = JsonSerializer.Deserialize<List<Ticket>>(ticketsJson, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        });
+
+        if (tickets == null)
+        {
+            throw new InvalidOperationException("Could not deserialize JSON. Should never happen!");
+        }
+
+        return tickets;
+    }
+
+    public async Task PostTicket(Ticket ticket)
+    {
+        if (client == null)
+        {
+            throw new InvalidOperationException("HTTP Client not initialized");
+        }
+
+        var content = new StringContent(JsonSerializer.Serialize(ticket), Encoding.UTF8, "application/json");
+        await client.PostAsync($"tickets", content);
     }
 }

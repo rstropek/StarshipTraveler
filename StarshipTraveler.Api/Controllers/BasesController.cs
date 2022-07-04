@@ -4,26 +4,25 @@ using StarshipTraveler.UI.Server.Data;
 using StarshipTraveler.Model;
 using System.Linq;
 
-namespace StarshipTraveler.UI.Server.Controllers
+namespace StarshipTraveler.UI.Server.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class BasesController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class BasesController : ControllerBase
+    [HttpGet]
+    public IEnumerable<Base> Bases() => SampleData.Bases;
+
+    [HttpGet]
+    [Route("{name}")]
+    public IActionResult Base([FromRoute] string name)
     {
-        [HttpGet]
-        public IEnumerable<Base> Bases() => SampleData.Bases;
-
-        [HttpGet]
-        [Route("{name}")]
-        public IActionResult Base([FromRoute] string name)
+        var baseObj = SampleData.Bases.FirstOrDefault(b => b.Name == name);
+        if (baseObj == null)
         {
-            var baseObj = SampleData.Bases.FirstOrDefault(b => b.Name == name);
-            if (baseObj == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(baseObj);
+            return NotFound();
         }
+
+        return Ok(baseObj);
     }
 }

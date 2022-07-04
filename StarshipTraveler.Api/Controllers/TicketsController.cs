@@ -7,40 +7,39 @@ using StarshipTraveler.UI.Server.Data;
 using StarshipTraveler.Model;
 using Microsoft.Extensions.Logging;
 
-namespace StarshipTraveler.UI.Server.Controllers
+namespace StarshipTraveler.UI.Server.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TicketsController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class TicketsController : ControllerBase
+    [HttpGet]
+    public async Task<IEnumerable<Ticket>> Tickets()
     {
-        [HttpGet]
-        public async Task<IEnumerable<Ticket>> Tickets()
-        {
-            // Slowing down things for demo purposes
-            await Task.Delay(0 /*2000*/);
+        // Slowing down things for demo purposes
+        await Task.Delay(0 /*2000*/);
 
-            return SampleData.Tickets;
+        return SampleData.Tickets;
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public IActionResult Ticket([FromRoute] string id)
+    {
+        var ticket = SampleData.Tickets.FirstOrDefault(t => t.ID == id);
+        if (ticket == null)
+        {
+            return NotFound();
         }
 
-        [HttpGet]
-        [Route("{id}")]
-        public IActionResult Ticket([FromRoute] string id)
-        {
-            var ticket = SampleData.Tickets.FirstOrDefault(t => t.ID == id);
-            if (ticket == null)
-            {
-                return NotFound();
-            }
+        return Ok(ticket);
+    }
 
-            return Ok(ticket);
-        }
+    [HttpPost]
+    public IActionResult Ticket([FromBody] Ticket _)
+    {
+        // Do something with ticket
 
-        [HttpPost]
-        public IActionResult Ticket([FromBody] Ticket _)
-        {
-            // Do something with ticket
-
-            return StatusCode(201);
-        }
+        return StatusCode(201);
     }
 }
