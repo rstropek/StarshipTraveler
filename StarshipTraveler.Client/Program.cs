@@ -5,9 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using StarshipTraveler.Model;
 using StartshipTraveler.Client.Data;
 using StarshipTraveler.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<IFlightplan, Flightplan>();
 builder.Services.AddScoped<IStarshipApi, StarshipApi>();

@@ -8,8 +8,8 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Dijkstra.NET" Version="1.2.1" />
-	  <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-	  <PackageReference Include="System.Text.Json" Version="6.0.5" />
+	  <PackageReference Include="System.ComponentModel.Annotations" Version="6.0.0-preview.4.21253.7" />
+	  <PackageReference Include="System.Text.Json" Version="7.0.0-rc.1.22426.10" />
 	</ItemGroup>
 
 </Project>
