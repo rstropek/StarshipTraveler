@@ -12,11 +12,6 @@ public class ConnectionsController : ControllerBase
 {
     [HttpGet]
     public IEnumerable<Connection> Connections() =>
-        SampleData.Connections.Union(SampleData.Connections.Select(c => new Connection
-            {
-                From = c.To,
-                To = c.From,
-                Distance = c.Distance,
-                Price = c.Price
-            })).ToArray();
+        SampleData.Connections.Union(SampleData.Connections.Select(
+            c => new Connection(c.To, c.From, c.Distance, c.Price))).ToArray();
 }

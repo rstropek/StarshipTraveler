@@ -1,27 +1,11 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace StarshipTraveler.Model;
 
-public class Base
+public record Base(string Name, string Image);
+
+public record GraphBase : Base
 {
-    public string? Name { get; set; }
-    public string? Image { get; set; }
-
-    public Base() { }
-
-    public Base(string name, string image)
-    {
-        Name = name;
-        Image = image;
-    }
-}
-
-public class GraphBase : Base
-{
-    public GraphBase() { }
-
     public GraphBase(uint graphID, string name, string image) : base(name, image)
     {
         GraphID = graphID;
@@ -62,13 +46,4 @@ public enum TimeRelation
     Upcoming
 }
 
-public class Connection : IEquatable<Connection>
-{
-    public string? From { get; set; }
-    public string? To { get; set; }
-    public int Distance { get; set; }
-    public decimal Price { get; set; }
-
-    public bool Equals(Connection other) =>
-        From == other.From && To == other.To && Distance == other.Distance && Price == other.Price;
-}
+public record Connection(string From, string To, int Distance, decimal Price);
