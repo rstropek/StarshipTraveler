@@ -33,15 +33,15 @@ public static class SampleData
 
     public static Connection[] Connections { get; } = new[]
     {
-        new Connection { From = "Decapod 10", To = "Earth", Distance = 1000, Price = 100m },
-        new Connection { From = "Cybertron", To = "Earth", Distance = 100, Price = 375.75m },
-        new Connection { From = "Krypton", To = "Earth", Distance = 12300, Price = 7499.99m },
-        new Connection { From = "Tatooine", To = "Vulcan", Distance = 5200, Price = 89.90m },
-        new Connection { From = "Earth", To = "Pandora", Distance = 3750, Price = 301.01m },
-        new Connection { From = "Earth", To = "Magrathea", Distance = 4242, Price = 4242.42m },
-        new Connection { From = "Arrakis", To = "Decapod 10", Distance = 7300, Price = 1349.90m },
-        new Connection { From = "Arrakis", To = "Pandora", Distance = 7300, Price = 1349.90m },
-        new Connection { From = "Pandora", To = "Magrathea", Distance = 4242, Price = 4242.42m },
-        new Connection { From = "Tatooine", To = "Krypton", Distance = 1234, Price = 1345.67m },
+        new Connection("Decapod 10", "Earth", 1000, 100m),
+        new Connection("Cybertron", "Earth", 100, 375.75m),
+        new Connection("Krypton", "Earth", 12300, 7499.99m),
+        new Connection("Tatooine", "Vulcan", 5200, 89.90m),
+        new Connection("Earth", "Pandora", 3750, 301.01m),
+        new Connection("Earth", "Magrathea", 4242, 4242.42m),
+        new Connection("Arrakis", "Decapod 10", 7300, 1349.90m),
+        new Connection("Arrakis", "Pandora", 7300, 1349.90m),
+        new Connection("Pandora", "Magrathea", 4242, 4242.42m),
+        new Connection("Tatooine", "Krypton", 1234, 1345.67m),
     };
 }

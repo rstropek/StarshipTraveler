@@ -1,21 +1,19 @@
 ﻿using StarshipTraveler.Model;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace StartshipTraveler.Model;
 
 public abstract class StarshipApiBase : IStarshipApi
 {
-    private HttpClient? client;
+    private readonly HttpClient client;
 
-    protected HttpClient Client
+    public StarshipApiBase(HttpClient client)
     {
-        set { client = value; }
+        this.client = client;
     }
+
+    protected HttpClient Client => client;
 
     public async Task<Base> GetBaseAsync(string baseId)
     {
